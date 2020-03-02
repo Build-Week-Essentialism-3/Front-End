@@ -5,7 +5,7 @@ React I and React II's Repo
 [link to go here]
 
 ## Contributors
-
+Hugh "Trey" Lloyd
 David Alvarez [LinkedIn](https://www.linkedin.com/in/david-e-alvarez/) [GitHub](https://github.com/David-E-Alvarez)
 <br>
 
