@@ -31,7 +31,7 @@ The Essentialism app helps people get focused on what really matters to them and
 
 #### Front end deployed to `React`
 
-#### [Back end] built using: Heroku
+#### [https://essentialism3.herokuapp.com/] built using: Heroku
 
 
 
