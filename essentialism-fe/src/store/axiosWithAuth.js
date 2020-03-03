@@ -6,6 +6,6 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization:token
         },
-        baseURL:'https://essentialism3.herokuapp.com/api/auth/login'
+        baseURL:'https://essentialism3.herokuapp.com/api/'
     });
 }
