@@ -1,8 +1,12 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux';
+import {loginFunc} from '../store/actionIndex';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import axios from "axios";
 
-const Login = () => {
+
+const Login = (props) => {
+
+    console.log(props);
     const [user, setUser] = useState({
         username: "",
         password: ""
@@ -18,13 +22,10 @@ const Login = () => {
       };
       const submitForm = e => {
         e.preventDefault();
-        axios.post('https://essentialism3.herokuapp.com/api/auth/login',user)
-            .then (res => {
-            console.log(res)
-        })
-        //setUser({ username: "", password: "" });
+        props.loginFunc(user)
+         };
 
-      };
+         
     return (
         <div className="formDiv">
             <Form onSubmit={submitForm}>
@@ -58,4 +59,10 @@ const Login = () => {
     );
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isFetching:state.isFetching
+    }
+}
+
+export default connect(mapStateToProps,{loginFunc}) (Login);
