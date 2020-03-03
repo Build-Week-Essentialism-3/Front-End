@@ -28,7 +28,7 @@ const Login = (props) => {
 
     return (
         <div className="formDiv">
-            <Form onSubmit={submitForm}>
+            <Form>
                 <FormGroup>
                 <Label htmlFor="username">
                     <Input 
