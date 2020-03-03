@@ -11,6 +11,8 @@ export const loginFunc = (creds, historyParam) => dispatch => {
     .then(res => {
         console.log(res,'login res');
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userID', res.data.id);
+        
         dispatch({type:LOGIN_SUCCESS, payload:res.data});
         historyParam.push('/userHome');
     })
@@ -27,6 +29,7 @@ export const registerFunc = (creds, historyParam) => dispatch => {
     .then(res => {
         console.log(res,'register res');
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userID', res.data.id);
         dispatch({type:REGISTER_SUCCESS, payload:res.data});
         historyParam.push('/userHome');
     })
