@@ -4,10 +4,12 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { connect } from "react-redux";
 
 const Register = (props) => {
+    
     const [user, setUser] = useState({
         username: "",
         password: ""
       });
+      console.log(user, 'this is the user from reg');
       const handleChanges = e => {
         //console.log("note: ", user);
         setUser({

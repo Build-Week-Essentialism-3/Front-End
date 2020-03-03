@@ -26,10 +26,10 @@ export const registerFunc = (creds, historyParam) => dispatch => {
     axios.post('https://essentialism3.herokuapp.com/api/auth/register',creds)
     .then(res => {
         console.log(res,'register res');
-        // localStorage.setItem('token', res.data.token);
-        // dispatch({type:REGISTER_SUCCESS, payload:res.data});
-        // historyParam.push('/userHome');
+        localStorage.setItem('token', res.data.token);
+        dispatch({type:REGISTER_SUCCESS, payload:res.data});
+        historyParam.push('/userHome');
     })
-    // .catch(err => dispatch({type:REGISTER_FAILED}))
+    .catch(err => dispatch({type:REGISTER_FAILED}))
 };
 
