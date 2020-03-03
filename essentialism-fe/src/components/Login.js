@@ -4,6 +4,9 @@ import {loginFunc} from '../store/actionIndex';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 
+
+
+
 const Login = (props) => {
 
     console.log(props,'these are props');
@@ -22,12 +25,16 @@ const Login = (props) => {
       };
       const submitForm = e => {
         e.preventDefault();
-        props.loginFunc(user)
+        props.loginFunc(user,props.history)
          };
 
 
     return (
         <div className="formDiv">
+            
+
+          
+
             <Form onSubmit={submitForm}>
                 <FormGroup>
                 <Label htmlFor="username">

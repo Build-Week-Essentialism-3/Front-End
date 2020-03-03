@@ -1,18 +1,32 @@
 import React from 'react';
-import Register from './components/Register';
-import Login from './components/Login';
-import ValuesPage from './components/ValuesPage';
+
+
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+
+import NavWithAuth from './routes/routesWithAuth'
+
+import NavNoAuth from './routes/navNoAuth';
+
+
 
 
 function App() {
   return (
+    <Router>
+
     <div className="App">
- 
-    <Register/>
-    <Login/>
-    <ValuesPage/>
+    
+
+   <NavNoAuth/>
+   <NavWithAuth/>
+
+
+
     </div>
+    
+    </Router>
   );
 }
 
