@@ -1,22 +1,22 @@
 import React, {useState} from "react";
-//import axios from 'axios';
+import axios from 'axios';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 const ValuesPage = () => {
     const [values, setValues] = useState({
-        id: "",
         name: ""
       });
-    
+      
       const handleChanges = e => {
-        //console.log("note: ", user);
+        console.log("e: ", e);
         setValues({
-          ...values
+          ...values,
+          [e.target.name]: e.target.value
         });
+
       };
       const submitForm = e => {
         e.preventDefault();
         setValues({ id: "", name: "" });
-        console.log("id: " + values.id);
 
       };
     return (
@@ -24,7 +24,7 @@ const ValuesPage = () => {
             <Form onSubmit={submitForm}>
                 <FormGroup check>
                     <Label check>
-                        <Input id={values.id} type="checkbox" name="test" onChange={handleChanges} value={values.name} /> Athletic Ability
+                        <Input type="checkbox" onChange={handleChanges} /> Athletic Ability
                     </Label>
                 </FormGroup>
                 <FormGroup check>
