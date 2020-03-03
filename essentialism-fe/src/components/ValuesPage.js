@@ -1,13 +1,30 @@
-import React from "react";
-import {Form, FormGroup, Label, Input} from "reactstrap";
+import React, {useState} from "react";
+//import axios from 'axios';
+import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 const ValuesPage = () => {
-  
+    const [values, setValues] = useState({
+        id: "",
+        name: ""
+      });
+    
+      const handleChanges = e => {
+        //console.log("note: ", user);
+        setValues({
+          ...values
+        });
+      };
+      const submitForm = e => {
+        e.preventDefault();
+        setValues({ id: "", name: "" });
+        console.log("id: " + values.id);
+
+      };
     return (
         <div className="valuesDiv">
-            <Form>
+            <Form onSubmit={submitForm}>
                 <FormGroup check>
                     <Label check>
-                        <Input type="checkbox"/> Athletic Ability
+                        <Input id={values.id} type="checkbox" name="test" onChange={handleChanges} value={values.name} /> Athletic Ability
                     </Label>
                 </FormGroup>
                 <FormGroup check>
@@ -80,9 +97,7 @@ const ValuesPage = () => {
                         <Input type="checkbox" /> Other:
                     </Label>
                 </FormGroup>
-               
-
-
+                <Button type="submit">Submit</Button>
             </Form>
         </div>
     )
