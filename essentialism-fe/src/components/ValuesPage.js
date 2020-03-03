@@ -1,30 +1,29 @@
 import React, {useState} from "react";
-//import axios from 'axios';
+import axios from 'axios';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 const ValuesPage = () => {
     const [values, setValues] = useState({
-        id: "",
+        value_id: 0, 
         name: ""
       });
-    
-      const handleChanges = e => {
-        //console.log("note: ", user);
-        setValues({
-          ...values
-        });
-      };
-      const submitForm = e => {
-        e.preventDefault();
-        setValues({ id: "", name: "" });
-        console.log("id: " + values.id);
-
-      };
+      
+    const handleIdChanges = event => {
+        setValues({...values, value_id: event.target.value})    
+    }
+    const handleNameChanges = event => {
+        setValues({...values, name: event.target.value})
+    }
+    const handleSubmit = event => {
+        event.preventDefault();
+        //console.log("project: " + project.projectName);
+        //console.log("description: " + project.description);
+    };
     return (
         <div className="valuesDiv">
-            <Form onSubmit={submitForm}>
+            <Form onSubmit={event => handleSubmit(event)}>
                 <FormGroup check>
                     <Label check>
-                        <Input id={values.id} type="checkbox" name="test" onChange={handleChanges} value={values.name} /> Athletic Ability
+                        <Input type="checkbox" onChange={event => handleIdChanges(event)} onChange={event => handleNameChanges(event)} /> Athletic Ability
                     </Label>
                 </FormGroup>
                 <FormGroup check>
