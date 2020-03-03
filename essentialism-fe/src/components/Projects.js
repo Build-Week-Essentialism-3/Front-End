@@ -7,19 +7,19 @@ const Projects = () => {
         description: ""
     });
     const handleprojectChange = event => {
-        console.log("project event: " + event.target.value)
+        //console.log("project event: " + event.target.value)
         setProject({ ...project, projectName: event.target.value });
       };
 
       const handleDescriptionChange = event => {
-          console.log("descriptiong event: " + event.target.value)
+         //console.log("descriptiong event: " + event.target.value)
         setProject({ ...project, description: event.target.value });
       };
 
       const handleSubmit = event => {
         event.preventDefault();
-        console.log("project: " + project.projectName);
-        console.log("description: " + project.description);
+        //console.log("project: " + project.projectName);
+        //console.log("description: " + project.description);
       };
     return(
         <div>
