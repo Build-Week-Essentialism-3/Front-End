@@ -1,7 +1,9 @@
 import React, {useState} from "react";
+import {registerFunc} from '../store/actionIndex';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { connect } from "react-redux";
 
-const Register = () => {
+const Register = (props) => {
     const [user, setUser] = useState({
         username: "",
         password: ""
@@ -15,7 +17,8 @@ const Register = () => {
       };
       const submitForm = e => {
         e.preventDefault();
-        setUser({ username: "", password: "" });
+        props.registerFunc(user);
+        
       };
     return (
         <div className="formDiv">
@@ -49,5 +52,9 @@ const Register = () => {
         </div>
     );
 }
-
-export default Register;
+const mapStateToProps = state => {
+    return {
+        isFetching:state.isFetching
+    }
+}
+export default connect(mapStateToProps, {registerFunc}) (Register);

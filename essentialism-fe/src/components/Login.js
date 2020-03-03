@@ -6,7 +6,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Login = (props) => {
 
-    console.log(props);
+    console.log(props,'these are props');
     const [user, setUser] = useState({
         username: "",
         password: ""
@@ -25,7 +25,7 @@ const Login = (props) => {
         props.loginFunc(user)
          };
 
-         
+
     return (
         <div className="formDiv">
             <Form onSubmit={submitForm}>
