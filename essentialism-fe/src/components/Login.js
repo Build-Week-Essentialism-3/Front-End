@@ -17,7 +17,7 @@ const Login = (props) => {
 
 
       const handleChanges = e => {
-        //console.log("note: ", user);
+        console.log("e.target.value: ", e.target.value);
         setUser({
           ...user,
           [e.target.name]: e.target.value
@@ -31,11 +31,15 @@ const Login = (props) => {
 
     return (
         <div className="formDiv">
+
             
 
           
 
             <Form onSubmit={submitForm}>
+
+           
+
                 <FormGroup>
                 <Label htmlFor="username">
                     <Input 

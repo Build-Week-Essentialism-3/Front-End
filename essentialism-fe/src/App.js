@@ -1,6 +1,10 @@
 import React from 'react';
 
 
+
+
+import Projects from './components/Projects';
+
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -17,12 +21,18 @@ function App() {
     <Router>
 
     <div className="App">
+
     
 
    <NavNoAuth/>
    <NavWithAuth/>
 
 
+
+
+ 
+ 
+    <Projects/>
 
     </div>
     
