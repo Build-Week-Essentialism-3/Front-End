@@ -1,16 +1,19 @@
-import React, {useState} from "react";
-//import axios from 'axios';
-import {Form, FormGroup, Label, Button} from "reactstrap";
+import React, {useState, useEffect} from "react";
+import axios from 'axios';
+import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 const ValuesPage = () => {
-    const [values, setValues] = useState({
-        value_id: 0, 
-        name: ""
-      });
-      const handleNameChange = event => {
-          console.log("name event: " + event.target.value)
-          setValues({...values, name: event.target.value})
-      }
-    
+   
+    const [values, setValuesData] = useState([]);
+    useEffect(() => {
+        axios.get("https://essentialism3.herokuapp.com/api/users/")
+          .then(response => {
+            console.log("response.data: ", response.data);
+            setValuesData(response.data.results);
+          })
+          .catch(error =>{
+            console.log("Data was not returned,", error)
+          })
+      },[])
     return (
         <div className="valuesDiv">
             <Form >
@@ -86,13 +89,15 @@ const ValuesPage = () => {
                 </FormGroup>
                 <FormGroup >
                     <Label >
-                        <Button color="info"> Other:</Button>
+                        <Input type="textarea" placeholder="other: "/>
                     </Label>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>
         </div>
     )
+   
 }
 
 export default ValuesPage;
+
