@@ -5,7 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import NavWithAuth from './routes/routesWithAuth'
 import NavNoAuth from './routes/navNoAuth';
 
-
+//temporarily adding values page component
+import ValuesPage from "./components/ValuesPage";
 
 
 function App() {
@@ -24,7 +25,6 @@ function App() {
 
  
  
-    
 
     </div>
     
