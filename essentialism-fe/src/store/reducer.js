@@ -10,6 +10,10 @@ import {LOGIN_START,
     GET_VALUES_START,
     GET_VALUES_SUCCESS,
     GET_VALUES_FAILURE,
+    ADD_VALUE_START,
+    ADD_VALUE_SUCCESS,
+    ADD_VALUE_FAILURE,
+
 
 
 } from './actionIndex';
@@ -19,7 +23,9 @@ const initialState = {
     currentUser: {},
     isFetching: false,
     error:'',
-    projects:[]
+    projects:[],
+    values:[],
+
 };
 
 export const mainReducer = (state= initialState, action) => {
@@ -41,6 +47,9 @@ export const mainReducer = (state= initialState, action) => {
                         isFetching:false,
                         error:action.payload
                     };
+
+
+
                     case REGISTER_START:
                         return {
                             ...state,
@@ -58,6 +67,9 @@ export const mainReducer = (state= initialState, action) => {
                                     isFetching:false,
                                     error:action.payload
                                 };
+
+
+
                     case ADD_PROJ_START:
                         return {
                             ...state,
@@ -75,6 +87,48 @@ export const mainReducer = (state= initialState, action) => {
                                     isFetching:false,
                                     error:action.payload
                                 };
+
+
+
+
+                                            case GET_VALUES_START:
+                                                return {
+                                                        ...state,
+                                                        isFetching:true
+                                                    };
+                                                    case GET_VALUES_SUCCESS:
+                                                        return {
+                                                            ...state,
+                                                            isFetching:false,
+                                                            values:action.payload
+                                                        };
+                                                    case GET_VALUES_FAILURE:
+                                                            return {
+                                                                ...state,
+                                                                isFetching:false,
+                                                                error:action.payload
+                                                            };
+
+
+
+
+                                    case ADD_VALUE_START:
+                                                return {
+                                                        ...state,
+                                                        isFetching:true
+                                                    };
+                                                    case ADD_VALUE_SUCCESS:
+                                                        return {
+                                                            ...state,
+                                                            isFetching:false,
+                                                            values:action.payload
+                                                        };
+                                                    case ADD_VALUE_FAILURE:
+                                                            return {
+                                                                ...state,
+                                                                isFetching:false,
+                                                                error:action.payload
+                                                            };
 
             default: return state;
     }

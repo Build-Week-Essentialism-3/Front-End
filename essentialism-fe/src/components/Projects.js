@@ -22,9 +22,13 @@ const Projects = (props) => {
         setProject({ ...project, description: event.target.value });
       };
 
+      
+
+
       const handleSubmit = event => {
+          const currentUserID = JSON.parse(localStorage.getItem('userID'));
         event.preventDefault();
-        const projWithID = {...project, user_id:localStorage.getItem('userID')}
+        const projWithID = {...project, user_id:currentUserID}
         //console.log("project: " + project.projectName);
         //console.log("description: " + project.description);
         setProject(projWithID);
