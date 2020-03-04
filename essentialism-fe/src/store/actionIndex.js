@@ -11,7 +11,7 @@ export const loginFunc = (creds, historyParam) => dispatch => {
     .then(res => {
         console.log(res,'login res');
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('userID', res.data.id);
+        localStorage.setItem('userID', res.data.user.id);
         
         dispatch({type:LOGIN_SUCCESS, payload:res.data});
         historyParam.push('/userHome');
@@ -29,7 +29,7 @@ export const registerFunc = (creds, historyParam) => dispatch => {
     .then(res => {
         console.log(res,'register res');
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('userID', res.data.id);
+        localStorage.setItem('userID', res.data.saved.id);
         dispatch({type:REGISTER_SUCCESS, payload:res.data});
         historyParam.push('/userHome');
     })
@@ -53,4 +53,12 @@ export const addProj = (proj) => dispatch => {
 export const GET_VALUES_START = 'GET_VALUES_START';
 export const GET_VALUES_SUCCESS = 'GET_VALUES_SUCCESS';
 export const GET_VALUES_FAILURE = 'GET_VALUES_FAILURE';
+  
+export const getValues = () => {
+    axiosWithAuth()
+    .get('/values/')
+    .then(res => {
+        console.log(res,'res from get values');
 
+    })
+}

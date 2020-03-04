@@ -13,9 +13,9 @@ const NavBarNoAuth = () => {
             <Link to='/register'>Register</Link>
             <Link to ='/'>Login</Link>
         </div>
-                <Route path='/register'>
-                    <Register/>
-                </Route>
+                <Route path='/register'
+                   render={props => <Register {...props}/>} 
+                />
 
                 <Route exact path='/'
                 render={props=> <Login {...props}/>}
