@@ -1,17 +1,19 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
+import {axiosWithAuth} from '../store/axiosWithAuth'
 const ValuesPage = () => {
    
     const [values, setValuesData] = useState([]);
     useEffect(() => {
-        axios.get("https://essentialism3.herokuapp.com/api/users/")
+        axiosWithAuth()
+        .get("/values/")
           .then(response => {
-            console.log("response.data: ", response.data);
+            console.log("response.data: ", response);
             setValuesData(response.data.results);
           })
           .catch(error =>{
-            console.log("Data was not returned,", error)
+            console.log("Data was not returned,", error.message)
           })
       },[])
     return (
