@@ -1,102 +1,95 @@
 import React, {useState} from "react";
-import axios from 'axios';
-import {Form, FormGroup, Label, Input, Button} from "reactstrap";
+//import axios from 'axios';
+import {Form, FormGroup, Label, Button} from "reactstrap";
 const ValuesPage = () => {
     const [values, setValues] = useState({
         value_id: 0, 
         name: ""
       });
-      
-    const handleIdChanges = event => {
-        setValues({...values, value_id: event.target.value})    
-    }
-    const handleNameChanges = event => {
-        setValues({...values, name: event.target.value})
-    }
-    const handleSubmit = event => {
-        event.preventDefault();
-        //console.log("project: " + project.projectName);
-        //console.log("description: " + project.description);
-    };
+      const handleNameChange = event => {
+          console.log("name event: " + event.target.value)
+          setValues({...values, name: event.target.value})
+      }
+    
     return (
         <div className="valuesDiv">
-            <Form onSubmit={event => handleSubmit(event)}>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" onChange={event => handleIdChanges(event)} onChange={event => handleNameChanges(event)} /> Athletic Ability
+            <Form >
+                <FormGroup>
+                    <Label>
+                        <Button color="info">Athletics</Button> 
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Art and literature
+                <FormGroup>
+                    <Label>
+                        <Button color="info"> Art and literature</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Creativity, discovering, or inventing things to make a difference in the world
+                <FormGroup>
+                    <Label>
+                        <Button color="info"> Creativity, discovering, or inventing things to make a difference in the world</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Independence
+                <FormGroup>
+                    <Label>
+                        <Button color="info"> Independence</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Kindness and generosity
+                <FormGroup>
+                    <Label >
+                        <Button color="info"> Kindness and generosity</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Living in the moment
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Living in the moment</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Membership in a social group (such as your community, racial group, or school club)
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Membership in a social group (such as your community, racial group, or school club)</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Music
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Music</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> My community
+                <FormGroup >
+                    <Label >
+                        <Button  color="info"> My community</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> My moral principles
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> My moral principles</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Nature and the environment
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Nature and the environment</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Relationships with friends and family
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Relationships with friends and family</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Sense of humor
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Sense of humor</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Success in my career
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Success in my career</Button>
                     </Label>
                 </FormGroup>
-                <FormGroup check>
-                    <Label check>
-                        <Input type="checkbox" /> Other:
+                <FormGroup >
+                    <Label >
+                        <Button color="info"> Other:</Button>
                     </Label>
                 </FormGroup>
-                <Button type="submit">Submit</Button>
+                <Button>Submit</Button>
             </Form>
         </div>
     )

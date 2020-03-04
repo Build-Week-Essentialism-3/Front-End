@@ -13,7 +13,8 @@ import NavWithAuth from './routes/routesWithAuth'
 
 import NavNoAuth from './routes/navNoAuth';
 
-
+//temporarily adding values page component
+import ValuesPage from "./components/ValuesPage";
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
 
  
  
-    <Projects/>
-
+   <Projects/>
+   {/*temporarily adding ValuesPage component to console log */}
+    <ValuesPage/>
     </div>
     
     </Router>
