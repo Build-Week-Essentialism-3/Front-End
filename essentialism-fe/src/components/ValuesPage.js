@@ -7,9 +7,11 @@ const ValuesPage = () => {
 
     const [values, setValuesData] = useState([]);
     const [newValue, setNewValues] = useState("");
+    let valueList = [];
     const newData = {
         name: newValue
     }
+   
     useEffect(() => {
         axiosWithAuth()
         .get("/values/")
@@ -28,7 +30,7 @@ const ValuesPage = () => {
     }
     return (
         <div className="valuesDiv">
-            <Form onSubmit={}>
+            <Form>
             <FormGroup>
             {values.map(v =>{
                 return(
@@ -39,7 +41,7 @@ const ValuesPage = () => {
             })}
             <Form>
                 <Input type="textarea" placeholder="other: "></Input>
-                <Button onClick={}>Custom Value</Button>
+                <Button>Custom Value</Button>
             </Form>
             <Button>Submit</Button>
                 </FormGroup>
