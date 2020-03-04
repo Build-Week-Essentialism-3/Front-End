@@ -6,6 +6,10 @@ import {axiosWithAuth} from "../store/axiosWithAuth";
 const ValuesPage = () => {
 
     const [values, setValuesData] = useState([]);
+    const [newValue, setNewValues] = useState("");
+    const newData = {
+        name: newValue
+    }
     useEffect(() => {
         axiosWithAuth()
         .get("/values/")
@@ -17,21 +21,29 @@ const ValuesPage = () => {
             console.log("Data was not returned,", error)
           })
       },[])
-      console.log("values", values);
+    const handleClick = () =>{
+        //e.preventDefault();
+        //console.log("e.target.value: ", e.target.value);
+        console.log("button clicked!");
+    }
     return (
         <div className="valuesDiv">
-            
+            <Form onSubmit={}>
+            <FormGroup>
             {values.map(v =>{
                 return(
-                    <Form>
-                        <FormGroup>
-                            <Label>
-                                <Button key={v.id}>{v.name}</Button>
-                            </Label>
-                        </FormGroup>
-                    </Form>
+                    <Label>
+                        <Button key={v.id} onClick={handleClick}>{v.name}</Button>
+                    </Label>
                 ) 
             })}
+            <Form>
+                <Input type="textarea" placeholder="other: "></Input>
+                <Button onClick={}>Custom Value</Button>
+            </Form>
+            <Button>Submit</Button>
+                </FormGroup>
+            </Form>
         </div>
     )
    
