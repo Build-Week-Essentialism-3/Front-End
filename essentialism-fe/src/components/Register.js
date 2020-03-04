@@ -9,7 +9,7 @@ const Register = (props) => {
         username: "",
         password: ""
       });
-      console.log(user, 'this is the user from reg');
+      console.log(props, 'props from register');
       const handleChanges = e => {
         //console.log("note: ", user);
         setUser({
@@ -19,7 +19,7 @@ const Register = (props) => {
       };
       const submitForm = e => {
         e.preventDefault();
-        props.registerFunc(user);
+        props.registerFunc(user,props.history);
         
       };
     return (
@@ -56,7 +56,8 @@ const Register = (props) => {
 }
 const mapStateToProps = state => {
     return {
-        isFetching:state.isFetching
+        isFetching:state.isFetching,
+        currentUser:state.currentUser
     }
 }
 export default connect(mapStateToProps, {registerFunc}) (Register);

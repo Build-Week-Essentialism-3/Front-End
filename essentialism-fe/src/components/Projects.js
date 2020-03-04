@@ -1,14 +1,20 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux';
+import {addProj} from '../store/actionIndex';
+
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-const Projects = () => {
+const Projects = (props) => {
+    
     const [project, setProject] = useState({
-        projectName: "",
+        user_id:'',
+        project: "",
         description: ""
     });
+    console.log(props,'project');
     const handleprojectChange = event => {
         //console.log("project event: " + event.target.value)
-        setProject({ ...project, projectName: event.target.value });
+        setProject({ ...project, project: event.target.value });
       };
 
       const handleDescriptionChange = event => {
@@ -16,10 +22,20 @@ const Projects = () => {
         setProject({ ...project, description: event.target.value });
       };
 
+      
+
+
       const handleSubmit = event => {
+          const currentUserID = JSON.parse(localStorage.getItem('userID'));
         event.preventDefault();
+        const projWithID = {...project, user_id:currentUserID}
         //console.log("project: " + project.projectName);
         //console.log("description: " + project.description);
+        setProject(projWithID);
+        props.addProj(projWithID);
+        console.log(project,'proj after sub');
+        console.log(localStorage.getItem('userID'))
+      
       };
     return(
         <div>
@@ -39,4 +55,11 @@ const Projects = () => {
     )
 }
 
-export default Projects;
+const mapStateToProps = state => {
+    return {
+        projects:state.projects,
+        currentUser:state.currentUser
+    }
+}
+
+export default connect(mapStateToProps,{addProj}) (Projects);

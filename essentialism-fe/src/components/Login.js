@@ -9,7 +9,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Login = (props) => {
 
-    console.log(props,'these are props');
+    // console.log(props,'these are props');
     const [user, setUser] = useState({
         username: "",
         password: ""
