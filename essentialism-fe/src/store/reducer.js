@@ -13,6 +13,9 @@ import {LOGIN_START,
     ADD_VALUE_START,
     ADD_VALUE_SUCCESS,
     ADD_VALUE_FAILURE,
+    ADD_USER_VALUE_START,
+    ADD_USER_VALUE_SUCCESS,
+    ADD_USER_VALUE_FAILURE,
 
 
 
@@ -129,6 +132,27 @@ export const mainReducer = (state= initialState, action) => {
                                                                 isFetching:false,
                                                                 error:action.payload
                                                             };
+
+
+
+
+                                      case ADD_USER_VALUE_START:
+                                        return {
+                                              ...state,
+                                              isFetching:true
+                                                 };
+                                        case ADD_USER_VALUE_SUCCESS:
+                                            return {
+                                                ...state,
+                                                isFetching:false,
+                                                values:action.payload
+                                                };
+                                            case ADD_USER_VALUE_FAILURE:
+                                                return {
+                                                 ...state,
+                                                isFetching:false,
+                                                error:action.payload
+                                              };
 
             default: return state;
     }

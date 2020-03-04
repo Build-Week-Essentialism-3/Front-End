@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
-import {axiosWithAuth} from "../store/axiosWithAuth";
+import {axiosWithAuth} from '../store/axiosWithAuth';
 
 const ValuesPage = () => {
 
@@ -14,11 +14,14 @@ const ValuesPage = () => {
         axiosWithAuth()
         .get("/values/")
           .then(response => {
+
+
             console.log("response.data: ", response.data);
             setValuesData(response.data);
+
           })
           .catch(error =>{
-            console.log("Data was not returned,", error)
+            console.log("Data was not returned,", error.message)
           })
       },[])
     const handleClick = () =>{
