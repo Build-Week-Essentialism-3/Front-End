@@ -2,11 +2,18 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 import {axiosWithAuth} from '../store/axiosWithAuth';
+import {connect} from 'react-redux';
+import {addUserValue} from '../store/actionIndex';
 
 const ValuesPage = () => {
 
     const [values, setValuesData] = useState([]);
     const [newValue, setNewValues] = useState("");
+    
+
+    console.log(values,'values state');
+    
+    
     const newData = {
         name: newValue
     }
@@ -27,11 +34,20 @@ const ValuesPage = () => {
     const handleClick = () =>{
         //e.preventDefault();
         //console.log("e.target.value: ", e.target.value);
-        console.log("button clicked!");
+  
+            
+       
+ 
     }
+
+    // const handleSubmitUserValues = () => {
+    //     valuesList.map(val => (
+
+    //     ))
+    // }
     return (
         <div className="valuesDiv">
-            <Form onSubmit={}>
+            <Form >
             <FormGroup>
             {values.map(v =>{
                 return(
@@ -42,7 +58,7 @@ const ValuesPage = () => {
             })}
             <Form>
                 <Input type="textarea" placeholder="other: "></Input>
-                <Button onClick={}>Custom Value</Button>
+                <Button >Custom Value</Button>
             </Form>
             <Button>Submit</Button>
                 </FormGroup>
