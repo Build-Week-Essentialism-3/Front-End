@@ -3,13 +3,23 @@ import {LOGIN_START,
     LOGIN_FAILED,
     REGISTER_START, 
     REGISTER_SUCCESS, 
-    REGISTER_FAILED} from './actionIndex';
+    REGISTER_FAILED,
+    ADD_PROJ_START,
+    ADD_PROJ_SUCCESS,
+    ADD_PROJ_FAILURE,
+    GET_VALUES_START,
+    GET_VALUES_SUCCESS,
+    GET_VALUES_FAILURE,
+
+
+} from './actionIndex';
 
 
 const initialState = {
     currentUser: {},
     isFetching: false,
-    error:''
+    error:'',
+    projects:[]
 };
 
 export const mainReducer = (state= initialState, action) => {
@@ -47,7 +57,25 @@ export const mainReducer = (state= initialState, action) => {
                                     ...state,
                                     isFetching:false,
                                     error:action.payload
-                                }
+                                };
+                    case ADD_PROJ_START:
+                        return {
+                            ...state,
+                            isFetching:true
+                        };
+                        case ADD_PROJ_SUCCESS:
+                            return {
+                                ...state,
+                                isFetching:false,
+                                projects:action.payload
+                            };
+                            case ADD_PROJ_FAILURE:
+                                return {
+                                    ...state,
+                                    isFetching:false,
+                                    error:action.payload
+                                };
+
             default: return state;
     }
 }

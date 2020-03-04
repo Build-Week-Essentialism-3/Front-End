@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux';
+import {addProj} from '../store/actionIndex';
+
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 const Projects = () => {
@@ -39,4 +42,4 @@ const Projects = () => {
     )
 }
 
-export default Projects;
+export default connect(mapStateToProps,{addProj}) (Projects);
