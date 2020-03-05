@@ -14,6 +14,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <h1>Essentialism</h1>
         <NavNoAuth/>
         <NavWithAuth/>
         <Route path="/projects" component={Projects}/>

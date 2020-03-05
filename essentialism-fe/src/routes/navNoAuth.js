@@ -13,7 +13,7 @@ const NavBarNoAuth = () => {
     return (
         <>
         <div className='Nav-no-auth'>
-            <Link to='/register'>Register</Link>
+            <Link to='/register'>Register</Link>{" "}
             <Link to ='/'>Login</Link>
         </div>
                 <Route path='/register'

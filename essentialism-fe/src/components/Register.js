@@ -34,9 +34,12 @@ const Register = (props) => {
                         onChange={handleChanges}
                         placeholder="username"
                         value={user.username}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
-                
+                </FormGroup>
+                <FormGroup>
                 <Label htmlFor="password">
                     <Input
                         id="password_reg"
@@ -45,10 +48,13 @@ const Register = (props) => {
                         onChange={handleChanges}
                         placeholder="password"
                         value={user.password}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
-                <Button type="submit">Register</Button>
                 </FormGroup>
+                
+                <Button type="submit">Register</Button>
             </Form>
            
         </div>

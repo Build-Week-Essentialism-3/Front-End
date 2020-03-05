@@ -55,7 +55,7 @@ const Login = (props) => {
                 <Label htmlFor="password">
                     <Input
                         id="password"
-                        type="text" 
+                        type="password" 
                         name="password" 
                         onChange={handleChanges}
                         placeholder="password"
