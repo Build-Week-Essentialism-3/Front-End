@@ -7,3 +7,13 @@
 .selected {
   background:rgb(82, 167, 141);
 }
+
+.inlineNav{
+  color: red;
+  display: inline;
+}
+
+#projectDivBox{
+  margin-left: 25%;
+  margin-right: 25%;
+}
