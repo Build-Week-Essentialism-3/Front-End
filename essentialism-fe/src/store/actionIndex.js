@@ -117,7 +117,6 @@ export const getUserValues = (userID) => dispatch => {
     .get(`/users/${userID}/values`)
     .then(res => {
         console.log(res,'get user values res');
-        localStorage.setItem('userValuesList', res.data)
         dispatch({type:GET_USER_VALUES_SUCCESS, payload:res.data})
     })
     .catch(err => {
@@ -135,7 +134,6 @@ export const getTopValues = (userID) => dispatch => {
     .get(`/users/${userID}/top-values`)
     .then(res => {
         console.log(res,'get top values res');
-        localStorage.setItem('topValuesList', res.data)
         dispatch({type:GET_TOP_VALUES_SUCCESS, payload:res.data})
     })
     .catch(err => {
@@ -153,7 +151,6 @@ export const getProj = (userID) => dispatch => {
     .get(`/users/${userID}/projects`)
     .then(res => {
         console.log(res,'get projects res');
-        localStorage.setItem('projectsList', res.data)
         dispatch({type:GET_PROJ_SUCCESS, payload:res.data})
     })
     .catch(err => {

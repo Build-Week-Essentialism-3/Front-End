@@ -1,32 +1,10 @@
 import React, { useState, useEffect } from 'react';
 // import { Form, Label, Input, Button } from 'reactstrap';
-import { connect } from 'react-redux';
+import { connect, connectAdvanced } from 'react-redux';
 import {getUserValues,getTopValues,getProj} from '../store/actionIndex';
 
 const Compare = props => {
-    console.log(props);
     const userId = JSON.parse(localStorage.getItem('userID'));
-
-    // useEffect((props, userId) => {
-    //     async function fetchData() {
-    //         await props.getUserValues(userId);
-    //     }
-    //     fetchData();
-    // }, [])
-
-    // useEffect((props, userId) => {
-    //     async function fetchData() {
-    //         await props.getTopValues(userId);
-    //     }
-    //     fetchData();
-    // }, [])
-
-    // useEffect((props, userId) => {
-    //     async function fetchData() {
-    //         await props.getProj(userId);
-    //     }
-    //     fetchData();
-    // }, [])
 
     useEffect(() => {
         props.getUserValues(userId);
@@ -34,10 +12,32 @@ const Compare = props => {
         props.getProj(userId);
     }, []);
 
-    console.log('User Values: ', props.userValues);
-    console.log('Top Values: ', props.topValues);
-    console.log('Projects: ', props.projects);
+    let sorted = [];
+    const sort = () => {
+        let topOnly = [];
+        let valOnly = [];
 
+        let ids = [];
+        props.topValues.filter(top => {
+            ids.push(top.value_id);
+        });
+
+        props.userValues.map(val => {
+            props.topValues.map(top => {
+                if (top.name === val.name) {
+                    topOnly.push(top);
+                } else {
+                    if (val.value_id !== ids[0] && val.value_id !== ids[1] && val.value_id !== ids[2]) {
+                        valOnly.push(val);
+                    };
+                };
+            });
+        });
+
+        const distinctVal = [...new Set(valOnly)];
+        sorted = topOnly.concat(distinctVal);
+    }
+    sort();
 
     return (
         <>
@@ -45,7 +45,7 @@ const Compare = props => {
                 {props.projects && props.projects.map(proj => (
                     <div key={`proj-${proj.id}`} value={proj.id} className='compare-project-div'>
                         <div>
-                            <h3>Project: {proj.project}</h3>
+                            <h4>Project: {proj.project}</h4>
                             <h5>Description: {proj.description}</h5>
                         </div>
                         <div>
@@ -57,30 +57,28 @@ const Compare = props => {
             </div>
 
             <div className='user-values-container'>
-                {props.userValues && props.userValues.map(val => (
-                    props.topValues && props.topValues.map(top => (
-                        (top.value_id === val.value_id ? 
-                            <div key={`top-${top.id}`} className='compare-top-div'>
-                                <div>
-                                    <h3>Top Value: {top.name}</h3> 
-                                    <h5>Priority: {top.priority}</h5> 
-                                </div>
-                                <div>
-                                    <p>Delete Icon</p>
-                                </div>
+                {sorted.map(val => (
+                    (val.priority === 1 || val.priority === 2 || val.priority === 3 ? 
+                        <div className='compare-top-div'>
+                            <div>
+                                <h4>#{val.priority}</h4>
+                                <h5>Top Value: {val.name}</h5>  
                             </div>
-                            :
-                            <div key={`val-${val.id}`} className='compare-value-div'>
-                                <div>
-                                    <h3>Value: {val.name}</h3>
-                                </div>
-                                <div>
-                                    <p>Delete Icon</p>
-                                </div>
+                            <div>
+                                <p>Delete Icon</p>
                             </div>
-                        )
-                    ))
-                ))};
+                        </div>  
+                        :
+                        <div className='compare-value-div'>
+                            <div>
+                                <h4>Value: {val.name}</h4>
+                            </div>
+                            <div>
+                                <p>Delete Icon</p>
+                            </div>
+                        </div>  
+                    )
+                ))}
             </div>
         </>
     )
