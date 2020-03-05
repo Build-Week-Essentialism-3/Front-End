@@ -12,6 +12,7 @@ const ValuesPage = (props) => {
 
     const userId = JSON.parse(localStorage.getItem('userID'))
 
+
     const [values, setValuesData] = useState([]);
     const [newValue, setNewValue] = useState("");
     const [valueList, setValueList] = useState([]);
@@ -63,20 +64,24 @@ const ValuesPage = (props) => {
     
     console.log('ValueList: ', valueList);
 
+
     useEffect(() => {
         axiosWithAuth()
         .get("/values/")
           .then(response => {
 
 
+
             console.log("value get response.data: ", response.data);
             setValuesData(response.data);
+
 
           })
           .catch(error =>{
             console.log("Data was not returned,", error.message)
           })
   },[])
+
    
 
 const addUserV = e => {
@@ -120,6 +125,7 @@ const addNewValue = e => {
                  </Input>
 
                 <Button onClick={addNewValue}>Add Custom Value</Button>
+
 
             </Form>
 
