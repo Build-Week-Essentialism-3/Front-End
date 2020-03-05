@@ -49,6 +49,8 @@ const Login = (props) => {
                         onChange={handleChanges}
                         placeholder="username"
                         value={user.username}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
                 
@@ -60,6 +62,8 @@ const Login = (props) => {
                         onChange={handleChanges}
                         placeholder="password"
                         value={user.password}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
                 <Button type="submit">Login</Button>
