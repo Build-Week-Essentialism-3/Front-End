@@ -106,3 +106,57 @@ export const addUserValue = (userVal, userID) => dispatch => {
         dispatch({type:ADD_USER_VALUE_FAILURE})
     })
 }
+
+export const GET_USER_VALUES_START = 'GET_USER_VALUES_START';
+export const GET_USER_VALUES_SUCCESS = 'GET_USER_VALUES_SUCCESS';
+export const GET_USER_VALUES_FAILURE = 'GET_USER_VALUES_FAILURE';
+
+export const getUserValues = (userID) => dispatch => {
+    dispatch({type:GET_USER_VALUES_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/values`)
+    .then(res => {
+        console.log(res,'get user values res');
+        localStorage.setItem('userValuesList', res.data)
+        dispatch({type:GET_USER_VALUES_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_USER_VALUES_FAILURE, payload:err})
+    })
+}
+
+export const GET_TOP_VALUES_START = 'GET_TOP_VALUES_START';
+export const GET_TOP_VALUES_SUCCESS = 'GET_TOP_VALUES_SUCCESS';
+export const GET_TOP_VALUES_FAILURE = 'GET_TOP_VALUES_FAILURE';
+
+export const getTopValues = (userID) => dispatch => {
+    dispatch({type:GET_TOP_VALUES_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/top-values`)
+    .then(res => {
+        console.log(res,'get top values res');
+        localStorage.setItem('topValuesList', res.data)
+        dispatch({type:GET_TOP_VALUES_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_TOP_VALUES_FAILURE, payload:err})
+    })
+}
+
+export const GET_PROJ_START = 'GET_PROJ_START';
+export const GET_PROJ_SUCCESS = 'GET_PROJ_SUCCESS';
+export const GET_PROJ_FAILURE = 'GET_PROJ_FAILURE';
+
+export const getProj = (userID) => dispatch => {
+    dispatch({type:GET_PROJ_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/projects`)
+    .then(res => {
+        console.log(res,'get projects res');
+        localStorage.setItem('projectsList', res.data)
+        dispatch({type:GET_PROJ_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_PROJ_FAILURE, payload:err})
+    })
+}

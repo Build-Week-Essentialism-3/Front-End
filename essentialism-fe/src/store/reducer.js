@@ -16,6 +16,15 @@ import {LOGIN_START,
     ADD_USER_VALUE_START,
     ADD_USER_VALUE_SUCCESS,
     ADD_USER_VALUE_FAILURE,
+    GET_USER_VALUES_START,
+    GET_USER_VALUES_SUCCESS,
+    GET_USER_VALUES_FAILURE,
+    GET_TOP_VALUES_START,
+    GET_TOP_VALUES_SUCCESS,
+    GET_TOP_VALUES_FAILURE,
+    GET_PROJ_START,
+    GET_PROJ_SUCCESS,
+    GET_PROJ_FAILURE,
 
 
 
@@ -28,6 +37,8 @@ const initialState = {
     error:'',
     projects:[],
     values:[],
+    userValues:[],
+    topValues:[],
 
 };
 
@@ -153,6 +164,69 @@ export const mainReducer = (state= initialState, action) => {
                                                 isFetching:false,
                                                 error:action.payload
                                               };
+
+
+
+
+                                case GET_USER_VALUES_START:
+                                    return {
+                                        ...state,
+                                        isFetching:true
+                                    };
+                                    case GET_USER_VALUES_SUCCESS:
+                                        return {
+                                            ...state,
+                                            isFetching:false,
+                                            userValues:action.payload
+                                        };
+                                        case GET_USER_VALUES_FAILURE:
+                                            return {
+                                                ...state,
+                                                isFetching:false,
+                                                error:action.payload
+                                            }
+
+
+
+
+                                case GET_TOP_VALUES_START:
+                                    return {
+                                        ...state,
+                                        isFetching:true
+                                    };
+                                    case GET_TOP_VALUES_SUCCESS:
+                                        return {
+                                            ...state,
+                                            isFetching:false,
+                                            topValues:action.payload
+                                        };
+                                        case GET_TOP_VALUES_FAILURE:
+                                            return {
+                                                ...state,
+                                                isFetching:false,
+                                                error:action.payload
+                                            };
+
+
+
+
+                                case GET_PROJ_START:
+                                    return {
+                                        ...state,
+                                        isFetching:true
+                                    };
+                                    case GET_PROJ_SUCCESS:
+                                        return {
+                                            ...state,
+                                            isFetching:false,
+                                            projects:action.payload
+                                        };
+                                        case GET_PROJ_FAILURE:
+                                            return {
+                                                ...state,
+                                                isFetching:false,
+                                                error:action.payload
+                                            }
 
             default: return state;
     }
