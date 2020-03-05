@@ -40,8 +40,9 @@ const Compare = props => {
     sort();
 
     return (
-        <>
+        <div className='compare-container'>
             <div className='projects-container'>
+                <h3>Your Projects:</h3>
                 {props.projects && props.projects.map(proj => (
                     <div key={`proj-${proj.id}`} value={proj.id} className='compare-project-div'>
                         <div>
@@ -49,23 +50,24 @@ const Compare = props => {
                             <h5>Description: {proj.description}</h5>
                         </div>
                         <div>
-                            <p>Edit Icon</p>
-                            <p>Delete Icon</p>
+                            <h6>Edit Icon</h6>
+                            <h6>Delete Icon</h6>
                         </div>
                     </div>
                 ))}
             </div>
 
             <div className='user-values-container'>
+                <h3>Your Values:</h3>
                 {sorted.map(val => (
                     (val.priority === 1 || val.priority === 2 || val.priority === 3 ? 
                         <div className='compare-top-div'>
                             <div>
                                 <h4>#{val.priority}</h4>
-                                <h5>Top Value: {val.name}</h5>  
+                                <h4>Top Value: {val.name}</h4>  
                             </div>
                             <div>
-                                <p>Delete Icon</p>
+                                <h6>Delete Icon</h6>
                             </div>
                         </div>  
                         :
@@ -74,13 +76,13 @@ const Compare = props => {
                                 <h4>Value: {val.name}</h4>
                             </div>
                             <div>
-                                <p>Delete Icon</p>
+                                <h6>Delete Icon</h6>
                             </div>
                         </div>  
                     )
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 
