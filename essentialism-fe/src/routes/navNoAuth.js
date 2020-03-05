@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import Projects from '../components/Projects';
 import { Route } from "react-router-dom";
 import "../App.css";
 
@@ -18,6 +19,7 @@ const NavBarNoAuth = () => {
         </div>
             <Route path='/register' render={props => <Register {...props}/>}/>
             <Route exact path='/' render={props=> <Login {...props}/>}/>
+           {/* <Route to='/projects' component={Projects}/> */}
 </>
 
     )
