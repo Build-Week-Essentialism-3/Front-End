@@ -4,17 +4,31 @@ import {Form, FormGroup, Label, Input, Button} from "reactstrap";
 import {axiosWithAuth} from '../store/axiosWithAuth';
 import {connect} from 'react-redux';
 import {addUserValue} from '../store/actionIndex';
+import {addNewValue} from '../store/actionIndex';
 
-const ValuesPage = () => {
+
+const ValuesPage = (props) => {
+    console.log(props,'props')
+
+    const userId = JSON.parse(localStorage.getItem('userID'))
 
     const [values, setValuesData] = useState([]);
-     const [newValue, setNewValue] = useState("");
-    let valueList = [];
+    const [newValue, setNewValue] = useState("");
+    const [valueList, setValueList] = useState([]);
+    
+
+    const handleNewData = e => {
+        setNewValue(e.target.value);
+        console.log(e.target.value);
+    };
+
 
 
     const newData = {
         name: newValue
     };
+
+    
     const toggle = e => {
         if (e.target.classList.contains('selected')) {
             e.target.classList.remove('selected');
@@ -25,30 +39,37 @@ const ValuesPage = () => {
 
     const selectValue = e => {
         e.preventDefault();
-
         
-        if (e.target.classList.contains('selected')) {
-            // If the classlist of the button includes 'selected', removes the value from the valueList and toggles the 'selected' class off.
-            for (let i = 0; i < valueList.length; i++) {
-                if (valueList[i].value_id === e.target.value) {
-                    valueList.splice(i, 1);
-                }
-            }
-            toggle(e);    
-        } else {
-            // if the classlist of the button does not inclued 'selected', adds the value to valueList and toggles the 'selected' class on.
-            valueList.push({ user_id: userId, value_id: parseInt(e.target.value, 10) })
+  
+           
+            const updatedList = values.filter(item => {
+                return Number(e.target.value) !== item.id
+            }) 
+            console.log(updatedList)
+             setValuesData(updatedList);
+                console.log(e.target.value)
+        
+           
+            
+            setValueList([
+                ...valueList,
+                { user_id: userId, value_id: Number(e.target.value) }
+            ])
+
             toggle(e)
-            console.log('ValueList: ', valueList);
-        };
+            
+        
     };
+    
+    console.log('ValueList: ', valueList);
+
     useEffect(() => {
         axiosWithAuth()
         .get("/values/")
           .then(response => {
 
 
-            console.log("response.data: ", response.data);
+            console.log("value get response.data: ", response.data);
             setValuesData(response.data);
 
           })
@@ -57,48 +78,52 @@ const ValuesPage = () => {
           })
   },[])
    
-  const handleClick = () =>{
-        //e.preventDefault();
-        //console.log("e.target.value: ", e.target.value);
-  
-            
-       
+
+const addUserV = e => {
+    e.preventDefault();
+    valueList.map(val => {
+        props.addUserValue(val, val.user_id)
+        console.log(props.values,'props values')
+    })
+    
+}
+
+const addNewValue = e => {
+    e.preventDefault();
+    props.addNewValue(newValue);
+}
+
  
-    }
-
-    // const handleSubmitUserValues = () => {
-    //     valuesList.map(val => (
-
-    //     ))
-    // }
-    return (
-        <div className="valuesDiv">
-            <Form >
-
-      })
-      //console.log("valueList", valueList);
+      
 
    
     return (
         <div className="valuesDiv">
-            <Form>
+            <Form onSubmit={addUserV}>
 
             <FormGroup>
             {values.map(v =>{
                 return(
                     <Label>
-                        <Button key={v.id}> {v.name} onClick={selectValue}</Button>
+                        <Button onClick={selectValue} key={v.id} value={v.id}>{v.name}</Button>
                     </Label>
                 ) 
             })}
+            <Button className='btn-sub-addValue' type='submit'>Submit</Button>
             <Form>
 
 
-                <Input type="textarea" placeholder="other: " value={newData.name}></Input>
-                <Button>Custom Value</Button>
+                <Input type="textarea" placeholder="other: " 
+                value={newData.name}
+                 onChange={handleNewData}>
+
+                 </Input>
+
+                <Button onClick={addNewValue}>Add Custom Value</Button>
 
             </Form>
-            <Button>Submit</Button>
+
+            
                 </FormGroup>
             </Form>
         </div>
@@ -106,5 +131,12 @@ const ValuesPage = () => {
    
 }
 
-export default ValuesPage;
+const mapStatetoProps = state => {
+    return {
+        isFetching:state.isFetching,
+        values:state.values
+    }
+}
+
+export default connect(mapStatetoProps,{addNewValue, addUserValue})(ValuesPage);
 

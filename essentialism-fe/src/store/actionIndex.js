@@ -62,6 +62,7 @@ export const getValues = () => dispatch => {
     .get('/values/')
     .then(res => {
         console.log(res,'res from get values');
+        localStorage.setItem('valueId', res.data.id)
         dispatch({type: GET_VALUES_SUCCESS, payload:res.data});
         })
         .catch(err => {
