@@ -9,8 +9,11 @@
 }
 
 .inlineNav{
-  color: red;
   display: inline;
+  text-decoration: none;
+}
+.inlineNav:hover{
+  text-decoration: none;
 }
 
 #projectDivBox{
