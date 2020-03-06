@@ -12,7 +12,11 @@ const currentUser = JSON.parse(localStorage.getItem('userID'));
 console.log(props.userValues,'user val props from top 3 page')
     // const [userValues, setUserValues]
     const [TopThree, setTopThree] = useState([]);
-    const [topThreeShape, setTopThreeShape] = useState([]);
+    const [topThreeShape, setTopThreeShape] = useState([{
+        user_id:'',
+        value_id:'',
+        priority:''
+    }]);
 
 
 
@@ -37,7 +41,7 @@ console.log(props.userValues,'user val props from top 3 page')
                 return Number(e.target.value) === item.value_id})
         setTopThree([...TopThree, ...updatedList]);
         console.log(TopThree,'top three console')
-
+            // setTopThreeShape([{...topThreeShape,user_id:currentUser}])
     }
 
     const handlesub = e => {
