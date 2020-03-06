@@ -14,20 +14,20 @@ const ValuesPage = (props) => {
 
 
     const [values, setValuesData] = useState([]);
-    const [newValue, setNewValue] = useState("");
+    const [newValue, setNewValue] = useState([{name:''}]);
     const [valueList, setValueList] = useState([]);
     
 
     const handleNewData = e => {
-        setNewValue(e.target.value);
+        setNewValue({...newValue, [e.target.name]:e.target.value});
         console.log(e.target.value);
     };
 
 
 
-    const newData = {
-        name: newValue
-    };
+    // const newData = {
+    //     name: newValue
+    // };
 
     
     const toggle = e => {
@@ -115,11 +115,26 @@ const addNewValue = e => {
             })}
             <Button color="primary" className='btn-sub-addValue' type='submit'>Submit</Button>
             <Form>
+
                 <Input type="textarea" placeholder="other: " 
                     value={newData.name}
                     onChange={handleNewData}>
                 </Input>
                 <Button color="primary" onClick={addNewValue}>Add Custom Value</Button>
+
+
+
+                <Input type="textarea" placeholder="other: "
+                name='newValue' 
+                value={newValue.name}
+                 onChange={handleNewData}>
+
+                 </Input>
+
+                <Button onClick={addNewValue}>Add Custom Value</Button>
+
+
+
             </Form>
             </FormGroup>
             </Form>
