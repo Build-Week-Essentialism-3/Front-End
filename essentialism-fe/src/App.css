@@ -8,6 +8,50 @@
   background:rgb(82, 167, 141);
 }
 
+
+.compare-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.user-values-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.compare-project-div {
+  margin: 3% auto;
+  padding: 5%;
+  background: black;
+  color: white;
+  width: 100%;
+}
+
+.compare-top-div {
+  margin: 3% auto;
+  padding: 5%;
+  background: #000000cb;
+  color: white;
+  width: 100%;
+}
+
+.compare-value-div {
+  margin: 3% auto;
+  padding: 5%;
+  background: black;
+  color: white;
+  width: 100%;
+=======
 .inlineNav{
   display: inline;
   text-decoration: none;
@@ -19,4 +63,5 @@
 #projectDivBox{
   margin-left: 25%;
   margin-right: 25%;
+
 }

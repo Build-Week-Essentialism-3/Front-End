@@ -5,6 +5,12 @@ import NavWithAuth from './routes/routesWithAuth'
 import NavNoAuth from './routes/navNoAuth';
 
 
+//temporarily adding values page component
+// import ValuesPage from "./components/ValuesPage";
+// import Projects from "./components/Projects";
+// import Compare from "./components/Compare";
+
+
 
 function App() {
   return (
