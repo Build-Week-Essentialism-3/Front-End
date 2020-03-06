@@ -16,6 +16,7 @@ import {LOGIN_START,
     ADD_USER_VALUE_START,
     ADD_USER_VALUE_SUCCESS,
     ADD_USER_VALUE_FAILURE,
+
     GET_USER_VALUES_START,
     GET_USER_VALUES_SUCCESS,
     GET_USER_VALUES_FAILURE,
@@ -25,6 +26,14 @@ import {LOGIN_START,
     GET_PROJ_START,
     GET_PROJ_SUCCESS,
     GET_PROJ_FAILURE,
+
+//     GET_USER_CHOSEN_VALUE_START,
+//     GET_USER_CHOSEN_VALUE_SUCCESS,
+//     GET_USER_CHOSEN_VALUE_FAILURE,
+//     CHOOSE_TOP_THREE_START,
+//     CHOOSE_TOP_THREE_SUCCESS,
+//     CHOOSE_TOP_THREE_FAILURE
+
 
 
 
@@ -38,7 +47,11 @@ const initialState = {
     projects:[],
     values:[],
     userValues:[],
+
     topValues:[],
+
+//     topThree:[]
+
 
 };
 
@@ -156,7 +169,7 @@ export const mainReducer = (state= initialState, action) => {
                                             return {
                                                 ...state,
                                                 isFetching:false,
-                                                values:action.payload
+                                                userValues:action.payload
                                                 };
                                             case ADD_USER_VALUE_FAILURE:
                                                 return {
@@ -164,6 +177,7 @@ export const mainReducer = (state= initialState, action) => {
                                                 isFetching:false,
                                                 error:action.payload
                                               };
+
 
 
 
@@ -227,6 +241,48 @@ export const mainReducer = (state= initialState, action) => {
                                                 isFetching:false,
                                                 error:action.payload
                                             }
+
+    case GET_USER_CHOSEN_VALUE_START:
+    return {
+            ...state,
+            isFetching:true
+                };
+    case GET_USER_CHOSEN_VALUE_SUCCESS:
+        return {
+            ...state,
+            isFetching:false,
+        userValues: action.payload
+            };
+
+        case GET_USER_CHOSEN_VALUE_FAILURE:
+            return {
+                ...state,
+            isFetching:false,
+            error:action.payload
+            };
+
+
+
+
+
+                                                      case CHOOSE_TOP_THREE_START:
+                                                return {
+                                                      ...state,
+                                                      isFetching:true
+                                                         };
+                                                case CHOOSE_TOP_THREE_SUCCESS:
+                                                    return {
+                                                        ...state,
+                                                        isFetching:false,
+                                                        topThree:action.payload
+                                                        };
+                                                    case CHOOSE_TOP_THREE_FAILURE:
+                                                        return {
+                                                         ...state,
+                                                    isFetching:false,
+                                                    error:action.payload
+                                                    };
+
 
             default: return state;
     }
