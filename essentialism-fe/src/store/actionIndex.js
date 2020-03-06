@@ -1,6 +1,60 @@
 import {axiosWithAuth} from './axiosWithAuth';
 import axios from 'axios';
 
+
+
+export const GET_PROJ_START = 'GET_PROJ_START';
+export const GET_PROJ_SUCCESS = 'GET_PROJ_SUCCESS';
+export const GET_PROJ_FAILURE = 'GET_PROJ_FAILURE';
+
+export const getProj = (userID) => dispatch => {
+    dispatch({type:GET_PROJ_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/projects`)
+    .then(res => {
+        console.log(res,'get projects res');
+        dispatch({type:GET_PROJ_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_PROJ_FAILURE, payload:err})
+    })
+}
+
+
+
+export const GET_TOP_VALUES_START = 'GET_TOP_VALUES_START';
+export const GET_TOP_VALUES_SUCCESS = 'GET_TOP_VALUES_SUCCESS';
+export const GET_TOP_VALUES_FAILURE = 'GET_TOP_VALUES_FAILURE';
+
+export const getTopValues = (userID) => dispatch => {
+    dispatch({type:GET_TOP_VALUES_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/top-values`)
+    .then(res => {
+        console.log(res,'get top values res');
+        dispatch({type:GET_TOP_VALUES_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_TOP_VALUES_FAILURE, payload:err})
+    })
+}
+
+export const GET_USER_VALUES_START = 'GET_USER_VALUES_START';
+export const GET_USER_VALUES_SUCCESS = 'GET_USER_VALUES_SUCCESS';
+export const GET_USER_VALUES_FAILURE = 'GET_USER_VALUES_FAILURE';
+export const getUserValues1 = (userID) => dispatch => {
+    dispatch({type:GET_USER_VALUES_START});
+    axiosWithAuth()
+    .get(`/users/${userID}/values`)
+    .then(res => {
+        console.log(res,'get user values res');
+        dispatch({type:GET_USER_VALUES_SUCCESS, payload:res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_USER_VALUES_FAILURE, payload:err})
+    })
+}
+
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
@@ -107,95 +161,50 @@ export const addUserValue = (userVal, userID) => dispatch => {
     .catch(err => {
         dispatch({type:ADD_USER_VALUE_FAILURE})
     })
-
-
-export const GET_USER_VALUES_START = 'GET_USER_VALUES_START';
-export const GET_USER_VALUES_SUCCESS = 'GET_USER_VALUES_SUCCESS';
-export const GET_USER_VALUES_FAILURE = 'GET_USER_VALUES_FAILURE';
-
-export const getUserValues = (userID) => dispatch => {
-    dispatch({type:GET_USER_VALUES_START});
-    axiosWithAuth()
-    .get(`/users/${userID}/values`)
-    .then(res => {
-        console.log(res,'get user values res');
-        dispatch({type:GET_USER_VALUES_SUCCESS, payload:res.data})
-    })
-    .catch(err => {
-        dispatch({type:GET_USER_VALUES_FAILURE, payload:err})
-    })
 }
 
-export const GET_TOP_VALUES_START = 'GET_TOP_VALUES_START';
-export const GET_TOP_VALUES_SUCCESS = 'GET_TOP_VALUES_SUCCESS';
-export const GET_TOP_VALUES_FAILURE = 'GET_TOP_VALUES_FAILURE';
+    export const CHOOSE_TOP_THREE_START = 'CHOOSE_TOP_THREE_START';
+    export const CHOOSE_TOP_THREE_SUCCESS = 'CHOOSE_TOP_THREE_SUCCESS';
+    export const CHOOSE_TOP_THREE_FAILURE = 'CHOOSE_TOP_THREE_FAILURE';
+    
+    export const chooseTop = (user_id,top) => dispatch => {
+        dispatch({type:CHOOSE_TOP_THREE_START});
+        axiosWithAuth()
+        .post(`/values/user/${user_id}/top-values`, top)
+        .then(res => {
+            console.log(res,'res from top 3 post');
+            dispatch({type:CHOOSE_TOP_THREE_SUCCESS})
+        })
+        .catch(err => {
+            dispatch({type:CHOOSE_TOP_THREE_FAILURE})
+        })
+    };
 
-export const getTopValues = (userID) => dispatch => {
-    dispatch({type:GET_TOP_VALUES_START});
+
+
+
+
+
+
+
+export const GET_USER_CHOSEN_VALUE_START = 'GET_USER_CHOSEN_VALUE_START';
+export const GET_USER_CHOSEN_VALUE_SUCCESS = 'GET_USER_CHOSEN_VALUE_SUCCESS';
+export const GET_USER_CHOSEN_VALUE_FAILURE = 'GET_USER_CHOSEN_VALUE_FAILURE';
+
+export const getUserValues = (id) => dispatch => {
+    dispatch({type:GET_USER_CHOSEN_VALUE_START});
     axiosWithAuth()
-    .get(`/users/${userID}/top-values`)
+    .get(`/users/${id}/values`)
     .then(res => {
-        console.log(res,'get top values res');
-        dispatch({type:GET_TOP_VALUES_SUCCESS, payload:res.data})
+        console.log(res,'res from get chosen user val');
+        dispatch({type:GET_USER_CHOSEN_VALUE_SUCCESS, payload:res.data})
     })
     .catch(err => {
-        dispatch({type:GET_TOP_VALUES_FAILURE, payload:err})
+        dispatch({type:GET_USER_CHOSEN_VALUE_FAILURE})
     })
-}
-
-export const GET_PROJ_START = 'GET_PROJ_START';
-export const GET_PROJ_SUCCESS = 'GET_PROJ_SUCCESS';
-export const GET_PROJ_FAILURE = 'GET_PROJ_FAILURE';
-
-export const getProj = (userID) => dispatch => {
-    dispatch({type:GET_PROJ_START});
-    axiosWithAuth()
-    .get(`/users/${userID}/projects`)
-    .then(res => {
-        console.log(res,'get projects res');
-        dispatch({type:GET_PROJ_SUCCESS, payload:res.data})
-    })
-    .catch(err => {
-        dispatch({type:GET_PROJ_FAILURE, payload:err})
-    })
-}
 
 };
 
-// export const GET_USER_CHOSEN_VALUE_START = 'GET_USER_CHOSEN_VALUE_START';
-// export const GET_USER_CHOSEN_VALUE_SUCCESS = 'GET_USER_CHOSEN_VALUE_SUCCESS';
-// export const GET_USER_CHOSEN_VALUE_FAILURE = 'GET_USER_CHOSEN_VALUE_FAILURE';
-
-// export const getUserValues = (id) => dispatch => {
-//     dispatch({type:GET_USER_CHOSEN_VALUE_START});
-//     axiosWithAuth()
-//     .get(`/users/${id}/values`)
-//     .then(res => {
-//         console.log(res,'res from get chosen user val');
-//         dispatch({type:GET_USER_CHOSEN_VALUE_SUCCESS, payload:res.data})
-//     })
-//     .catch(err => {
-//         dispatch({type:GET_USER_CHOSEN_VALUE_FAILURE})
-//     })
-
-// };
 
 
-
-// export const CHOOSE_TOP_THREE_START = 'CHOOSE_TOP_THREE_START';
-// export const CHOOSE_TOP_THREE_SUCCESS = 'CHOOSE_TOP_THREE_SUCCESS';
-// export const CHOOSE_TOP_THREE_FAILURE = 'CHOOSE_TOP_THREE_FAILURE';
-
-// export const chooseTop = (user_id,top) => dispatch => {
-//     dispatch({type:CHOOSE_TOP_THREE_START});
-//     axiosWithAuth()
-//     .post(`/values/user/${user_id}/top-values`, top)
-//     .then(res => {
-//         console.log(res,'res from top 3 post');
-//         dispatch({type:CHOOSE_TOP_THREE_SUCCESS})
-//     })
-//     .catch(err => {
-//         dispatch({type:CHOOSE_TOP_THREE_FAILURE})
-//     })
-// };
 

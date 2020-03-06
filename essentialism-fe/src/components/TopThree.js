@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {getUserValues} from '../store/actionIndex';
+import {getUserValues1} from '../store/actionIndex';
 import {chooseTop} from '../store/actionIndex';
 import {useEffect, useState} from 'react';
 
@@ -23,7 +23,7 @@ console.log(props.userValues,'user val props from top 3 page')
 
     useEffect(() => {
         
-        props.getUserValues(currentUser)
+        props.getUserValues1(currentUser)
   
     }, [])
 
@@ -71,4 +71,4 @@ const mapStateToProps = state => {
    } 
 }
 
-export default connect(mapStateToProps, {getUserValues, chooseTop}) (TopThree)
+export default connect(mapStateToProps, {getUserValues1, chooseTop}) (TopThree)

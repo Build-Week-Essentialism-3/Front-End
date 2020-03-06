@@ -19,9 +19,9 @@ const UserHome = () => {
         <Link class="inlineNav" to='/projects'>Projects</Link>
         <ValuesPage/>
         
-    </div>
+    
 
-            <Link to='/projects'>Projects</Link>
+            {/* <Link to='/projects'>Projects</Link> */}
 
             <Link to='/userCompare'>Compare</Link>
 

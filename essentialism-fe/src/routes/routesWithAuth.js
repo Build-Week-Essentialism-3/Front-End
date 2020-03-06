@@ -20,7 +20,7 @@ const RoutesWithAuth = () => {
             <PrivateRouteUser exact path='/projects' component={Projects}/>
 
      
-        <PrivateRouteUser exact path='/userHome' component={UserHome}/>
+        {/* <PrivateRouteUser exact path='/userHome' component={UserHome}/> */}
 
         <PrivateRouteUser exact path='/userCompare' component={Compare}/> 
 
