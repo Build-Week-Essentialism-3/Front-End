@@ -31,15 +31,7 @@ const Login = (props) => {
 
     return (
         <div className="formDiv">
-
-            
-
-          
-
             <Form onSubmit={submitForm}>
-
-           
-
                 <FormGroup>
                 <Label htmlFor="username">
                     <Input 
@@ -49,17 +41,21 @@ const Login = (props) => {
                         onChange={handleChanges}
                         placeholder="username"
                         value={user.username}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
                 
                 <Label htmlFor="password">
                     <Input
                         id="password"
-                        type="text" 
+                        type="password" 
                         name="password" 
                         onChange={handleChanges}
                         placeholder="password"
                         value={user.password}
+                        required="required"
+                        minlength="6" maxlength="10"
                     />
                 </Label>
                 <Button type="submit">Login</Button>

@@ -7,3 +7,16 @@
 .selected {
   background:rgb(82, 167, 141);
 }
+
+.inlineNav{
+  display: inline;
+  text-decoration: none;
+}
+.inlineNav:hover{
+  text-decoration: none;
+}
+
+#projectDivBox{
+  margin-left: 25%;
+  margin-right: 25%;
+}

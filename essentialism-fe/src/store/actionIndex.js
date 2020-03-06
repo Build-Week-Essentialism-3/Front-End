@@ -14,7 +14,9 @@ export const loginFunc = (creds, historyParam) => dispatch => {
         localStorage.setItem('userID', res.data.user.id);
         
         dispatch({type:LOGIN_SUCCESS, payload:res.data});
+        console.log(historyParam);
         historyParam.push('/userHome');
+        
     })
     .catch(err => dispatch({type:LOGIN_FAILED}))
 };

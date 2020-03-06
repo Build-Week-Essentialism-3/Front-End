@@ -105,17 +105,23 @@ const addNewValue = e => {
     return (
         <div className="valuesDiv">
             <Form onSubmit={addUserV}>
-
             <FormGroup>
             {values.map(v =>{
                 return(
                     <Label>
-                        <Button onClick={selectValue} key={v.id} value={v.id}>{v.name}</Button>
+                        <Button color="warning" onClick={selectValue} key={v.id} value={v.id}>{v.name}</Button>
                     </Label>
                 ) 
             })}
-            <Button className='btn-sub-addValue' type='submit'>Submit</Button>
+            <Button color="primary" className='btn-sub-addValue' type='submit'>Submit</Button>
             <Form>
+
+                <Input type="textarea" placeholder="other: " 
+                    value={newData.name}
+                    onChange={handleNewData}>
+                </Input>
+                <Button color="primary" onClick={addNewValue}>Add Custom Value</Button>
+
 
 
                 <Input type="textarea" placeholder="other: "
@@ -128,10 +134,9 @@ const addNewValue = e => {
                 <Button onClick={addNewValue}>Add Custom Value</Button>
 
 
-            </Form>
 
-            
-                </FormGroup>
+            </Form>
+            </FormGroup>
             </Form>
         </div>
     )

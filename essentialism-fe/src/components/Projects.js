@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {connect} from 'react-redux';
 import {addProj} from '../store/actionIndex';
+import "../App.css";
 
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
@@ -38,18 +39,21 @@ const Projects = (props) => {
       
       };
     return(
-        <div>
+        <div id="projectDivBox">
             <Form onSubmit={event => handleSubmit(event)}>
                 <FormGroup>
                     <Label>Project: 
                         <Input type="text" onChange={event => handleprojectChange(event)}/>
                     </Label>
                 </FormGroup>
+                
                 <FormGroup>
                     <Label>Description:</Label>
-                    <Input type="textarea" onChange={event => handleDescriptionChange(event)}></Input>
+                    <Input id="projectTextArea" type="textarea" onChange={event => handleDescriptionChange(event)}></Input>
                     <Button type="submit">Add Project</Button>
                 </FormGroup>
+                
+                
             </Form>
         </div>
     )
