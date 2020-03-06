@@ -306,8 +306,8 @@ export const mainReducer = (state= initialState, action) => {
                         case DELETE_VALUE_SUCCESS:
                             return {
                                 ...state,
-                                topValues:action.payload,
-                                // topValues: state.topValues.filter(e=>e.id !== action.payload.id),
+                               
+                                topValues: state.topValues.filter(e=>e.id !== action.payload.id),
 
                                 isFetching:false,
                                 };

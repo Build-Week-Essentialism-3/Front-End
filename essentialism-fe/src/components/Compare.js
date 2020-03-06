@@ -49,15 +49,15 @@ const Compare = props => {
 e.preventDefault()
 for (let i=0; i<props.topValues.length; i++) {
     if(props.topValues[i].value_id === e.target.value) {
-        props.deleteValues(userId,props.topValues.value_id)
+        props.deleteValues(userId,props.topValues[i].value_id)
     }
 }
-console.log(e.target.value,'sorted vals')
+console.log(e.target.value,'target val')
  
         
     };
     
-
+console.log(sorted,'sprteed')
     return (
         <div className='compare-container'>
             <div className='projects-container'>
@@ -87,7 +87,7 @@ console.log(e.target.value,'sorted vals')
                             </div>
                             <div>
                                 <form>
-                               <button><h6 onClick={handleDelete} value={val.value_id}>Delete Icon</h6></button>
+                               <button value={val.value_id} onClick={handleDelete}><h6>Delete Icon</h6></button>
                                  </form>
                                 {/* onclick={()=> props.deleteValues(userId,val.value_id)} */}
                                

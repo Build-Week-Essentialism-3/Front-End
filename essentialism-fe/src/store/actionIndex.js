@@ -215,7 +215,7 @@ export const deleteValues = (userId, topId) => dispatch => {
     .delete(`/values/user/${userId}/top-values/${topId}`)
     .then(res => {
         console.log(res, 'res from delete user top val')
-        dispatch({type:DELETE_VALUE_SUCCESS, payload:res.data })
+        dispatch({type:DELETE_VALUE_SUCCESS, payload:topId })
     })
     .catch(err => {
         dispatch({type:DELETE_VALUE_FAILURE})
