@@ -41,9 +41,7 @@ const ValuesPage = (props) => {
     const selectValue = e => {
         e.preventDefault();
         
-  
-           
-            const updatedList = values.filter(item => {
+                const updatedList = values.filter(item => {
                 return Number(e.target.value) !== item.id
             }) 
             console.log(updatedList)
