@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 // import { Form, Label, Input, Button } from 'reactstrap';
 import { connect, connectAdvanced } from 'react-redux';
-import {getUserValues,getTopValues,getProj} from '../store/actionIndex';
+import {getUserValues,getTopValues,getProj,deleteValues} from '../store/actionIndex';
+import { axiosWithAuth } from '../store/axiosWithAuth';
+
+
 
 const Compare = props => {
     const userId = JSON.parse(localStorage.getItem('userID'));
@@ -10,6 +13,7 @@ const Compare = props => {
         props.getUserValues(userId);
         props.getTopValues(userId);
         props.getProj(userId);
+      console.log(props.topValues,'top values on mount')
     }, []);
 
     let sorted = [];
@@ -39,6 +43,21 @@ const Compare = props => {
     }
     sort();
 
+    const handleDelete = e => {
+        
+
+e.preventDefault()
+for (let i=0; i<props.topValues.length; i++) {
+    if(props.topValues[i].value_id === e.target.value) {
+        props.deleteValues(userId,props.topValues.value_id)
+    }
+}
+console.log(e.target.value,'sorted vals')
+ 
+        
+    };
+    
+
     return (
         <div className='compare-container'>
             <div className='projects-container'>
@@ -67,7 +86,11 @@ const Compare = props => {
                                 <h4>Top Value: {val.name}</h4>  
                             </div>
                             <div>
-                                <h6>Delete Icon</h6>
+                                <form>
+                               <button><h6 onClick={handleDelete} value={val.value_id}>Delete Icon</h6></button>
+                                 </form>
+                                {/* onclick={()=> props.deleteValues(userId,val.value_id)} */}
+                               
                             </div>
                         </div>  
                         :
@@ -91,8 +114,9 @@ const mapStateToProps = state => {
         projects:state.projects,
         currentUser:state.currentUser,
         userValues:state.userValues,
-        topValues:state.topValues
+        topValues:state.topValues,
+        deleteValues:state.deleteValues
     }
 }
 
-export default connect(mapStateToProps,{getUserValues,getTopValues,getProj}) (Compare);
+export default connect(mapStateToProps,{getUserValues,getTopValues,getProj,deleteValues}) (Compare);
