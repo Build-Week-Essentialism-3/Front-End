@@ -114,11 +114,11 @@ const addNewValue = e => {
             <Button color="primary" className='btn-sub-addValue' type='submit'>Submit</Button>
             <Form>
 
-                <Input type="textarea" placeholder="other: " 
-                    value={newData.name}
+                {/* <Input type="textarea" placeholder="other: " 
+                    // value={newData.name}
                     onChange={handleNewData}>
                 </Input>
-                <Button color="primary" onClick={addNewValue}>Add Custom Value</Button>
+                <Button color="primary" onClick={addNewValue}>Add Custom Value</Button> */}
 
 
 
