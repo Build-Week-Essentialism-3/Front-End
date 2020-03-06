@@ -205,6 +205,21 @@ export const getUserValues = (id) => dispatch => {
 
 };
 
+export const DELETE_VALUE_START = 'DELETE_VALUE_START';
+export const DELETE_VALUE_SUCCESS = 'DELETE_VALUE_SUCCESS';
+export const DELETE_VALUE_FAILURE = 'DELETE_VALUE_FAILURE';
 
+export const deleteValues = (userId, topId) => dispatch => {
+    dispatch({type:DELETE_VALUE_START});
+    axiosWithAuth()
+    .delete(`/values/user/${userId}/top-values/${topId}`)
+    .then(res => {
+        console.log(res, 'res from delete user top val')
+        dispatch({type:DELETE_VALUE_SUCCESS, payload:res.data })
+    })
+    .catch(err => {
+        dispatch({type:DELETE_VALUE_FAILURE})
+    })
+}
 
 

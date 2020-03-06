@@ -37,9 +37,14 @@ import {LOGIN_START,
     GET_USER_CHOSEN_VALUE_START,
     GET_USER_CHOSEN_VALUE_SUCCESS,
     GET_USER_CHOSEN_VALUE_FAILURE,
+
     CHOOSE_TOP_THREE_START,
     CHOOSE_TOP_THREE_SUCCESS,
-    CHOOSE_TOP_THREE_FAILURE
+    CHOOSE_TOP_THREE_FAILURE,
+
+    DELETE_VALUE_START,
+    DELETE_VALUE_SUCCESS,
+    DELETE_VALUE_FAILURE,
 
 
 
@@ -289,6 +294,29 @@ export const mainReducer = (state= initialState, action) => {
                                                     isFetching:false,
                                                     error:action.payload
                                                     };
+
+
+                                                    
+
+                    case DELETE_VALUE_START:
+                        return {
+                                ...state,
+                                isFetching:true
+                                    };
+                        case DELETE_VALUE_SUCCESS:
+                            return {
+                                ...state,
+                                topValues:action.payload,
+                                // topValues: state.topValues.filter(e=>e.id !== action.payload.id),
+
+                                isFetching:false,
+                                };
+                            case DELETE_VALUE_FAILURE:
+                                return {
+                                    ...state,
+                            isFetching:false,
+                            error:action.payload
+                            };
 
 
             default: return state;
